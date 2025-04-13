@@ -5,11 +5,11 @@ async function getData(selected_major) {
         var data = await response.json();
 
         // filter data array for the selected meal
-        major_items = data.filter( (item) => item.major == selected_major );  
+        major = data.filter( (item) => item.major == selected_major );  
 
        var templateText = document.getElementById('citStudents').innerHTML;
        var compiledTemplateText = Handlebars.compile(templateText);   // get and compile template code
-       compiledHtml = compiledTemplateText({ rows: major_items })      // apply data to template
+       compiledHtml = compiledTemplateText({ rows: major })      // apply data to template
        document.getElementById('citStudents').innerHTML = compiledHtml; 
     }
     else {
