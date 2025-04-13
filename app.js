@@ -7,13 +7,13 @@ async function getData(selected_major) {
         // filter data array for the selected meal
         major_items = data.filter( (item) => item.major == selected_major );  
 
-       var templateText = document.getElementById('cit5studentsTemplate').innerHTML;
+       var templateText = document.getElementById('cit5Template').innerHTML;
        var compiledTemplateText = Handlebars.compile(templateText);   // get and compile template code
        compiledHtml = compiledTemplateText({ rows: major_items })      // apply data to template
-       document.getElementById('cit5studentsTable').innerHTML = compiledHtml; 
+       document.getElementById('cit5Table').innerHTML = compiledHtml; 
     }
     else {
-       document.querySelector('#cit5studentsTable').innerHTML = "There was an error, or menu items not found";
+       document.querySelector('#cit5Table').innerHTML = "There was an error, or menu items not found";
     }	
  
 }
