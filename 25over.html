@@ -30,35 +30,33 @@
     
     <!-- <p>Today is: {{time_loaded}}</p> --> 
 	
-    <p>Select Dealer <select  v-on:change="getByDealer()" v-model='dealer'>
-        <option value='Joe Smith Cars & Trucks'>Joe Smith Cars & Trucks</option>
-        <option value='Sue Green Motorworld'>Sue Green Motorworld</option>
-        <option value='Kim Ivanov Quality Cars'>Kim Ivanov Quality Cars</option>
-        <option value='Max Johnson Chevrolet'>Max Johnson Chevrolet</option>
-        <option value='Linda Silver VDub'>Linda Silver VDub</option>
-        <option value='Stu Mar Autorama'>Stu Mar Autorama</option>
-        <option value='Moe Hernandez Motors'>Moe Hernandez Motors</option>
-    </select></p>
+    <!-- <p>Select Dealer <select  v-on:change="getByDealer()" v-model='dealer'> -->
+        <!-- <option value='Joe Smith Cars & Trucks'>Joe Smith Cars & Trucks</option> -->
+        <!-- <option value='Sue Green Motorworld'>Sue Green Motorworld</option> -->
+        <!-- <option value='Kim Ivanov Quality Cars'>Kim Ivanov Quality Cars</option> -->
+        <!-- <option value='Max Johnson Chevrolet'>Max Johnson Chevrolet</option> -->
+        <!-- <option value='Linda Silver VDub'>Linda Silver VDub</option> -->
+        <!-- <option value='Stu Mar Autorama'>Stu Mar Autorama</option> -->
+        <!-- <option value='Moe Hernandez Motors'>Moe Hernandez Motors</option> -->
+    <!-- </select></p> -->
 
-	<div v-show="showTable" >
-    <h2>All Cars</h2>
+	<!-- <div v-show="showTable" > -->
+    <!-- <h2>All Cars</h2> -->
           
           <table class="table table-bordered table-striped">
               <tr>
-                  <th>id</th>
-                  <th>year</th>
-                  <th>make</th>
-                  <th>model</th>
-                  <th>miles</th>
-                  <th>price</th>
+                  <th>Ticket ID</th>
+                  <th>Time</th>
+                  <th>Posted Speed</th>
+                  <th>MPH Over</th>
+                  <th>Violator Sex</th>
               </tr>
-              <tr v-for = "car in cars">
-                  <td>{{car.id}}</td>
-                  <td>{{car.year}}</td>
-                  <td>{{car.make}}</td>
-                  <td>{{car.model}}</td>
-                  <td>{{car.miles}}</td>
-                  <td>{{car.price}}</td>
+              <tr v-for = "ticket in tickets">
+                  <td>{{ticket.tid}}</td>
+                  <td>{{ticket.stop_time}}</td>
+                  <td>{{ticket.posted_speed}}</td>
+                  <td>{{ticket.actual_speed - ticket.posted_speed}}</td>
+                  <td>{{ticket.violator_sex}}</td>
               </tr>
          </table>
   	</div>   <!-- end dataTable -->
@@ -67,38 +65,8 @@
 </div>   <!-- end class= 'container' -->
 
 <script>
-    let app = Vue.createApp({
-        data() {     // returns an object of data
-            return {
-                dealer: '',
-                results: [],        //array to hold all car data returned
-			    cars: [],           // array to hold filtered data
-			    time_loaded: '',
-                showTable: false
-            }
-        },
-	    created() {      // section executes as page loads
-		    var d = new Date()
-		    this.time_loaded = d.toLocaleString()
-		
-		    this.getData()  // load json data as page loads
-	    },
-        methods: {    // an object of functions (methods)
-            async getData() {
-                const response = await fetch('cars.json')
-                this.results = await response.json()
-            },
-		    getByDealer() {
-				//console.log(this.dealer)
-			    this.showTable = true
-			    // filter data from selected dealer
-			    this.cars = this.results.filter( (car) => car.dealer == this.dealer );
-		    }
-        },
-    
-    })
-
-    app.mount('#carsApp')   //in which div to mount the vue app
+       
+    app.mount('#ticketApp')   //in which div to mount the vue app
 
 </script>
 </body></html>
