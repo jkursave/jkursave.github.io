@@ -42,7 +42,7 @@
                     <th>MPH Over</th>
                     <th>Violator Sex</th>
                 </tr>
-                <tr v-for = "ticket in tickets">{{ticket.actual_speed - ticket.posted_speed >= 25}}>
+                <tr v-for = "ticket in tickets">
                     <td>{{ticket.tid}}</td>
                     <td>{{ticket.stop_time}}</td>
                     <td>{{ticket.posted_speed}}</td>
