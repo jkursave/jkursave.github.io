@@ -86,6 +86,13 @@
                     this.tickets = await response.json()
                 },
             }
+            computed: {
+              tickets() {
+                  return this.tickets.filter(
+                      (ticket) => ticket.actual_speed > this.ticket.posted_speed + 25
+                  );
+              },
+       },
            
        })
       app.mount('#ticketApp')
