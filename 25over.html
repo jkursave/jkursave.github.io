@@ -84,6 +84,8 @@
                 async getData() {
                     const response = await fetch('tickets1.json')
                     this.tickets = await response.json()
+                    this.showTable = true
+                    this.tickets = this.results.filter( (ticket) => ticket.ticket.actual_speed - ticket.posted_speed == this.tickets);
                 },
             }
             
